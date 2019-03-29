@@ -1,0 +1,10 @@
+h1 アカウント登録
+= form_for @user, url: registration_create_path do |f|
+  p ユーザー名
+  = f.text_field :name
+  p パスワード
+  = f.text_field :password
+  p パスワード確認
+  = f.text_field :password_confirmation
+  br
+  = f.submit '登録する'
