@@ -1,7 +1,0 @@
-h1 つぶやきを投稿
-= form_for @tweet, url: tweets_path do |f|
-  p 内容
-  = f.text_area :contents
-  = f.hidden_field :user_id, :value => session[:user_id]
-  br
-  = f.submit '投稿する'

@@ -1,9 +1,0 @@
-.menu
-  - unless session[:user_id] == nil
-    = button_to "topへ", root_path
-    = button_to "記事を投稿する", new_article_path,:class => 'button', :method => :get
-    = button_to "つぶやく", new_tweet_path,:class => 'button', :method => :get
-    = button_to "ログアウトする", logout_path, :class => 'button', :method => :get
-  - else
-    = button_to "アカウント登録", sign_up_path
-    = button_to "ログイン", login_path,:class => 'button', :method => :get
