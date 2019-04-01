@@ -1,0 +1,8 @@
+- @users.each do |user|
+  - if user.id == session[:user_id]
+    = link_to myPage_path do
+      = user.name
+  - else
+    = link_to user_path(user.id) do
+      = user.name
+  br/
