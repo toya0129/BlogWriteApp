@@ -1,5 +1,5 @@
 class User::FollowsController < ApplicationController
-before_action :check
+  before_action :check_signed_in
 
   def create
     @follow = Follow.new(follow_params)
@@ -11,8 +11,8 @@ before_action :check
   end
 
   def destroy
-    @follow = Follow.find(params[:id])
-    if @follow.destroy
+    follow = Follow.find(params[:id])
+    if follow.destroy
       redirect_to user_path(params[:user_id])
     else
       redirect_to :root
@@ -20,13 +20,7 @@ before_action :check
   end
 
   private
-  def follow_params
-    params.require(:follow).permit(:follow_id,:user_id)
-  end
-
-  def check
-    unless login_check
-      redirect_to login_path
+    def follow_params
+      params.require(:follow).permit(:follow_id,:user_id)
     end
-  end
 end

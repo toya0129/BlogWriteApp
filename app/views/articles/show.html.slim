@@ -11,7 +11,7 @@
   = @article.title
   p 内容
   = @article.contents
-  - if @article.picture
+  - if @article.picture?
     p 写真
     = image_tag @article.picture_url
 
@@ -21,13 +21,13 @@
 
 .comment_area
   h2 コメント一覧
-  - @comment.each do |comments|
+  - @article.comments.each do |comment|
     .comments
-      p = comments.user.name
-      p = comments.body
+      p = comment.user.name
+      p = comment.body
       p ----------
-      - if comments.user_id == session[:user_id]
-        = button_to "削除する", [@article, comments], :method => :delete
+      - if comment.user_id == session[:user_id]
+        = button_to "削除する", [@article, comment], :method => :delete
 
   - unless @article.user_id == session[:user_id]
     = form_for [@article, @new_comment] do |f|

@@ -1,24 +1,17 @@
 class PagesController < ApplicationController
-  before_action :check
+  before_action :check_signed_in
 
-  def topPage
+  def top_page
     # つぶやきリスト
-    @followers = Follow.where(user_id: session[:user_id])
+    @followers = current_user.follows
     @tweets = Tweet.all
-    @reply = Tweet.new
+    @reply = current_user.tweets.new
     # 最新記事リスト
     @article = Article.all
   end
 
-  def myPage
-    @article = Article.where(user_id: session[:user_id])
-    @tweets = Tweet.where(user_id: session[:user_id])
-  end
-
-  private
-  def check
-    unless login_check
-      redirect_to sign_up_path
-    end
+  def my_page
+    @article = current_user.articles
+    @tweets = current_user.tweets
   end
 end

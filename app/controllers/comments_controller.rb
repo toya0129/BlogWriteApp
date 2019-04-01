@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :check
+  before_action :check_signed_in
 
   def create
     @comment = Comment.new(comment_params)
@@ -20,14 +20,7 @@ class CommentsController < ApplicationController
   end
 
   private
-  def comment_params
-    params.require(:comment).permit(:user_id, :article_id, :body)
-  end
-
-  def check
-    unless login_check
-      redirect_to login_path
+    def comment_params
+      params.require(:comment).permit(:user_id, :article_id, :body)
     end
-  end
-
 end

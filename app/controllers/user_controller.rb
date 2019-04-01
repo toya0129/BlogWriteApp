@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :check
+  before_action :check_signed_in
 
   def index
     @users = User.all
@@ -14,12 +14,5 @@ class UserController < ApplicationController
       @followed = Follow.find_by(user_id: session[:user_id], follow_id: @user.id)
     end
     @follow = Follow.new
-  end
-
-  private
-  def check
-    unless login_check
-      redirect_to login_path
-    end
   end
 end
