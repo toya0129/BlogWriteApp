@@ -1,5 +1,5 @@
 .user_area
-  - if @article.user_id == session[:user_id]
+  - if article_own?(@article)
     = link_to myPage_path do
       = @article.user.name
   - else
@@ -15,7 +15,7 @@
     p 写真
     = image_tag @article.picture_url
 
-- if @article.user_id == session[:user_id]
+- if article_own?(@article)
   = button_to "編集する", {:action => "edit"}, :method => :get
   = button_to "削除する", {:action => "destroy"}, :method => :delete
 
@@ -26,13 +26,12 @@
       p = comment.user.name
       p = comment.body
       p ----------
-      - if comment.user_id == session[:user_id]
+      - if comment_own?(comment)
         = button_to "削除する", [@article, comment], :method => :delete
 
   - unless @article.user_id == session[:user_id]
     = form_for [@article, @new_comment] do |f|
       = f.text_area :body
-      = f.hidden_field :user_id, :value => session[:user_id]
       = f.hidden_field :article_id, :value => params[:id]
       br/
       = f.submit 'コメントする'

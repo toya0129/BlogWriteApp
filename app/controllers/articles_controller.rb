@@ -3,16 +3,15 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @new_comment = Comment.new
+    @new_comment = current_user.comments.new
   end
 
   def new
-    @article = Article.new
+    @article = current_user.articles.new
   end
 
   def create
-    @article = Article.new(article_params)
-    @article.user_id = session[:user_id]
+    @article = current_user.articles.new(article_params)
     if @article.save
       redirect_to root_path
     else
@@ -44,6 +43,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-        params.require(:article).permit(:user_id,:title,:contents,:picture,:good)
+        params.require(:article).permit(:title,:contents,:picture,:good)
     end
 end
