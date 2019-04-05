@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  include CommentsHelper
   before_action :check_signed_in
 
   def create
