@@ -6,6 +6,5 @@ h1 ブログの作成
   = f.text_area :contents
   p 写真
   = f.file_field :picture
-  = f.hidden_field :user_id, :value => session[:user_id]
   br
   = f.submit '記事を投稿する'

@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     @tweets = Tweet.all
     @reply = current_user.tweets.new
     # 最新記事リスト
-    @article = Article.all
+    @articles = Article.all
   end
 
   def my_page

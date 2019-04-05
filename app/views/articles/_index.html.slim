@@ -1,10 +1,10 @@
 h2 記事一覧
 br/
-- if @article.blank?
+- if @articles.blank?
   p 記事がありません
 - else
-  - @article.each do |articles|
+  - @articles.each do |article|
     .field
       .click
-        = link_to article_path(articles.id) do
-          p = articles.title
+        = link_to article_path(article) do
+          p = article.title

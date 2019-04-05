@@ -1,5 +1,5 @@
 class User::RegistrationController < ApplicationController
-  before_action :check, only: [:new,:create]
+  before_action :check_signed_in_ToRoot, only: [:new,:create]
 
   def new
     @user = User.new
@@ -28,11 +28,5 @@ class User::RegistrationController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name,:password,:password_confirm)
-    end
-
-    def check
-      if login_check
-        redirect_to :root
-      end
     end
 end
