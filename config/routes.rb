@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'pages#topPage'
-  get 'myPage', to: 'pages#myPage'
+  root 'pages#top_page'
+  get 'myPage', to: 'pages#my_page'
 
   scope module: 'user' do
     get 'sign_up', to: 'registration#new'

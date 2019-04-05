@@ -1,5 +1,5 @@
 class User::TweetsController < ApplicationController
-  before_action :check
+  before_action :check_signed_in
 
   def index
     @followers = Follow.where(user_id: session[:user_id])
@@ -14,7 +14,7 @@ class User::TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     if @tweet.save
-      redirect_to tweets_path
+      redirect_to root_path
     else
       render :new
     end
@@ -30,13 +30,7 @@ class User::TweetsController < ApplicationController
   end
 
   private
-  def tweet_params
-    params.require(:tweet).permit(:user_id, :contents, :reply_id)
-  end
-
-  def check
-    unless login_check
-      redirect_to login_path
+    def tweet_params
+      params.require(:tweet).permit(:user_id, :contents, :reply_id)
     end
-  end
 end
