@@ -1,9 +1,9 @@
 class ArticlesController < ApplicationController
   include ArticlesHelper
   before_action :check_signed_in
+  helper_method :article
 
   def show
-    @article = Article.find(params[:id])
     @new_comment = current_user.comments.new
   end
 
@@ -14,30 +14,34 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.new(article_params)
     if @article.save
+      flash[:alert] = "記事の保存に成功しました"
       redirect_to root_path
     else
+      flash[:alert] = "記事の保存に失敗しました"
       render :new
     end
   end
 
   def update
-    @article = Article.find(params[:id])
-    if @article.update(article_perams)
-      redirect_to articles_path
+    if article.update(article_params)
+      flash[:alert] = "記事の編集に成功しました"
+      redirect_to root_path
     else
+      flash[:alert] = "記事の編集に失敗しました"
       render :edit
     end
   end
 
   def edit
-    @article = Article.find(params[:id])
+
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    if @article.destroy
-      redirect_to articles_path
+    if article.destroy
+      flash[:alert] = "記事の削除に成功しました"
+      redirect_to root_path
     else
+      flash[:alert] = "記事の削除に失敗しました"
       render :show
     end
   end
@@ -45,5 +49,9 @@ class ArticlesController < ApplicationController
   private
     def article_params
         params.require(:article).permit(:title,:contents,:picture,:good)
+    end
+
+    def article
+      @article ||= Article.find(params[:id])
     end
 end

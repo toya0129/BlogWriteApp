@@ -4,8 +4,10 @@ class User::FollowsController < ApplicationController
   def create
     @follow = Follow.new(follow_params)
     if @follow.save
+      flash[:alert] = "フォローしました"
       redirect_to user_path(params[:user_id])
     else
+      flash[:alert] = "フォローできませんでした"
       redirect_to :root
     end
   end
@@ -13,8 +15,10 @@ class User::FollowsController < ApplicationController
   def destroy
     follow = Follow.find(params[:id])
     if follow.destroy
+      flash[:alert] = "フォロー解除しました"
       redirect_to user_path(params[:user_id])
     else
+      flash[:alert] = "フォロー解除できませんでした"
       redirect_to :root
     end
   end

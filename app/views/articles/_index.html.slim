@@ -8,3 +8,4 @@ br/
       .click
         = link_to article_path(article) do
           p = article.title
+  = will_paginate @articles, :param_name => 'article_page',:previous_label => ' &lt 前へ', :next_label => '次へ &gt'

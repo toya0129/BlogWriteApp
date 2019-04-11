@@ -6,17 +6,20 @@ class User::SessionController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: :name)
-    if @user.authenticate(:password)
+    user = User.find_by(name: :name)
+    if user.authenticate(:password)
+      flash[:alert] = "ログインに成功しました"
       sign_in(user)
       redirect_to :root
     else
+      flash[:alert] = "ログインに失敗しました"
       render :new
     end
   end
 
   def destroy
     sign_out
+    flash[:alert] = "ログアウトしました"
     redirect_to :root
   end
 
