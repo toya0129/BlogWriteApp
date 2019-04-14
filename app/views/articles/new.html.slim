@@ -1,4 +1,2 @@
 h1 ブログの作成
-= form_for @article, url: articles_path do |f|
-  = render partial: 'articles/article_form', locals: {f: f}
-  = f.submit '記事を投稿する'
+= render partial: 'articles/article_form', locals: {article: @article, url: articles_path, submit_button: 'views.articles.new.form.submit'}

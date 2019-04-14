@@ -1,7 +1,9 @@
-p タイトル
-= f.text_area :title
-p 内容
-= f.text_area :contents
-p 写真
-= f.file_field :picture
-br
+= form_for article do |f|
+  p タイトル
+  = f.text_area :title
+  p 内容
+  = f.text_area :contents
+  p 写真
+  = f.file_field :picture
+  br
+  = f.submit t(submit_button)

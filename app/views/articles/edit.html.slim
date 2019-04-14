@@ -1,4 +1,2 @@
 h1 ブログの編集
-= form_for article, url: article_path do |f|
-  = render partial: 'articles/article_form', locals: {f: f}
-  = f.submit '記事を編集する'
+= render partial: 'articles/article_form', locals: {url: article_path,submit_button: 'views.articles.edit.form.submit'}
