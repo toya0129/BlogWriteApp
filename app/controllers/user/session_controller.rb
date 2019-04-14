@@ -1,5 +1,5 @@
 class User::SessionController < ApplicationController
-  before_action :check_signed_in_ToRoot, only: [:new,:create]
+  before_action :logged_in_to_root, only: [:new,:create]
 
   def new
     @session = User.new
@@ -12,7 +12,7 @@ class User::SessionController < ApplicationController
       sign_in(user)
       redirect_to :root
     else
-      flash[:alert] = "ログインに失敗しました"
+      flash.now[:alert] = "ログインに失敗しました"
       render :new
     end
   end

@@ -11,7 +11,7 @@ class UserController < ApplicationController
     @following = follow_check(@user)
     @tweets = Tweet.where(user_id: params[:id])
     if @following
-      @followed = Follow.find_by(user_id: session[:user_id], follow_id: @user.id)
+      @followed = Follow.find_by(following_id: session[:user_id], follower_id: @user.id)
     end
     @follow = Follow.new
   end

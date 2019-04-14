@@ -17,7 +17,7 @@ class User::TweetsController < ApplicationController
       flash[:alert] = "つぶやきを投稿しました"
       redirect_to root_path
     else
-      flash[:alert] = "つぶやきを投稿できませんでした"
+      flash.now[:alert] = "つぶやきを投稿できませんでした"
       render :new
     end
   end

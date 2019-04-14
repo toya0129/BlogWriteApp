@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
       flash[:alert] = "記事の保存に成功しました"
       redirect_to root_path
     else
-      flash[:alert] = "記事の保存に失敗しました"
+      flash.now[:alert] = "記事の保存に失敗しました"
       render :new
     end
   end
@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
       flash[:alert] = "記事の編集に成功しました"
       redirect_to root_path
     else
-      flash[:alert] = "記事の編集に失敗しました"
+      flash.now[:alert] = "記事の編集に失敗しました"
       render :edit
     end
   end
@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
       flash[:alert] = "記事の削除に成功しました"
       redirect_to root_path
     else
-      flash[:alert] = "記事の削除に失敗しました"
+      flash.now[:alert] = "記事の削除に失敗しました"
       render :show
     end
   end

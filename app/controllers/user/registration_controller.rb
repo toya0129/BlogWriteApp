@@ -1,5 +1,5 @@
 class User::RegistrationController < ApplicationController
-  before_action :loged_in_to_root, only: [:new,:create]
+  before_action :logged_in_to_root, only: [:new,:create]
 
   def new
     @user = User.new
@@ -13,7 +13,7 @@ class User::RegistrationController < ApplicationController
       sign_in(user)
       redirect_to :root
     else
-      flash[:alert] = "アカウント作成に失敗しました"
+      flash.now[:alert] = "アカウント作成に失敗しました"
       render :new
     end
   end
@@ -24,7 +24,7 @@ class User::RegistrationController < ApplicationController
       flash[:alert] = "アカウントの削除に成功しました"
       redirect_to 'new'
     else
-      flash[:alert] = "アカウントの削除に失敗しました"
+      flash.now[:alert] = "アカウントの削除に失敗しました"
       render :root
     end
   end

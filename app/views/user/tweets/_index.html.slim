@@ -1,7 +1,7 @@
 h2 つぶやき
 - @tweets.each do |tweet|
   - @followers.each do |follower|
-    - if check_tweet(tweet,follower)
+    - if check_tweet?(tweet,follower)
       - if tweet.reply_id.nil?
         p = tweet.user.name
         p = tweet.contents

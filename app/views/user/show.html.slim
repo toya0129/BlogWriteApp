@@ -1,7 +1,8 @@
 h1 #{@user.name}さんのページ
 - unless @following
   = form_for [@user,@follow] do |f|
-    = f.hidden_field :follow_id, :value => @user.id
+    = f.hidden_field :follower_id, :value => @user.id
+    = f.hidden_field :following_id, :value => current_user.id
     = f.submit 'フォローする'
 - else
   = button_to "フォロー解除する", [@user, @followed], :method => :delete
