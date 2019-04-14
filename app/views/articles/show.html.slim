@@ -1,36 +1,36 @@
 .user_area
-  - if article_own?(@article)
+  - if article_own?(article)
     = link_to myPage_path do
-      = @article.user.name
+      = article.user.name
   - else
-    = link_to user_path(@article.user.id) do
-      = @article.user.name
+    = link_to user_path(article.user.id) do
+      = article.user.name
 
 .article_area
   p タイトル
-  = @article.title
+  = article.title
   p 内容
-  = @article.contents
-  - if @article.picture?
+  = article.contents
+  - if article.picture?
     p 写真
-    = image_tag @article.picture_url
+    = image_tag article.picture_url
 
-- if article_own?(@article)
+- if article_own?(article)
   = button_to "編集する", {:action => "edit"}, :method => :get
   = button_to "削除する", {:action => "destroy"}, :method => :delete
 
 .comment_area
   h2 コメント一覧
-  - @article.comments.each do |comment|
+  - article.comments.each do |comment|
     .comments
       p = comment.user.name
       p = comment.body
       p ----------
       - if comment_own?(comment)
-        = button_to "削除する", [@article, comment], :method => :delete
+        = button_to "削除する", [article, comment], :method => :delete
 
-  - unless @article.user_id == session[:user_id]
-    = form_for [@article, @new_comment] do |f|
+  - unless article.user_id == session[:user_id]
+    = form_for [article, @new_comment] do |f|
       = f.text_area :body
       = f.hidden_field :article_id, :value => params[:id]
       br/

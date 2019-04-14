@@ -1,10 +1,4 @@
 h1 ブログの編集
-= form_for @article, url: article_path do |f|
-  p タイトル
-  = f.text_area :title
-  p 内容
-  = f.text_area :contents
-  p 写真
-  = f.file_field :picture
-  br
+= form_for article, url: article_path do |f|
+  = render partial: 'articles/article_form', locals: {f: f}
   = f.submit '記事を編集する'

@@ -12,19 +12,23 @@ class User::TweetsController < ApplicationController
   end
 
   def create
-    @tweet = current_user.tweets.new(tweet_params)
-    if @tweet.save
+    tweet = current_user.tweets.new(tweet_params)
+    if tweet.save
+      flash[:alert] = "つぶやきを投稿しました"
       redirect_to root_path
     else
+      flash.now[:alert] = "つぶやきを投稿できませんでした"
       render :new
     end
   end
 
   def destroy
-    @tweet = Tweet.find(params[:id])
-    if @tweet.destroy
+    tweet = Tweet.find(params[:id])
+    if tweet.destroy
+      flash[:alert] = "つぶやきを削除しました"
       redirect_to myPage_path
     else
+      flash[:alert] = "つぶやきを削除できませんでした"
       redirect_to :root
     end
   end

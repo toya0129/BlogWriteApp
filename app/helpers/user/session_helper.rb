@@ -5,12 +5,12 @@ module User::SessionHelper
     end
   end
 
-  def check_signed_in_ToRoot
-    unless login_check
+  def logged_in_to_root
+    if login_check
       redirect_to :root
     end
   end
-  
+
   def login_check
     session[:user_id].present?
   end

@@ -1,8 +1,8 @@
 h2 つぶやき
 - @tweets.each do |tweet|
   - @followers.each do |follower|
-    - if tweet.user_id == follower.follow_id
-      - if tweet.reply_id == nil
+    - if check_tweet?(tweet,follower)
+      - if tweet.reply_id.nil?
         p = tweet.user.name
         p = tweet.contents
         - @tweets.each do |t|
@@ -16,3 +16,4 @@ h2 つぶやき
         br
         = f.submit '返信する'
       p --------
+= will_paginate @tweets, :param_name => 'tweet_page', :previous_label => ' &lt 前へ', :next_label => '次へ &gt'
