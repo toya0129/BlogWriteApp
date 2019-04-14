@@ -8,9 +8,8 @@ class UserController < ApplicationController
   def show
     @user = User.find(params[:id])
     @article = Article.where(user_id: params[:id])
-    @following = follow_check(@user)
     @tweets = Tweet.where(user_id: params[:id])
-    if @following
+    if @following = follow_check(@user)
       @followed = Follow.find_by(following_id: session[:user_id], follower_id: @user.id)
     end
     @follow = Follow.new

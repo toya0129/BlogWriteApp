@@ -7,7 +7,6 @@ class User::FollowsController < ApplicationController
       flash[:alert] = "フォローしました"
       redirect_to user_path(params[:user_id])
     else
-      logger.debug(@follow.save!)
       flash[:alert] = "フォローできませんでした"
       redirect_to :root
     end

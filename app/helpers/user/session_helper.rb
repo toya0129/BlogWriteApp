@@ -5,7 +5,7 @@ module User::SessionHelper
     end
   end
 
-  def logged_in_to_root
+  def logged_in_redirect_root
     if login_check
       redirect_to :root
     end
