@@ -9,9 +9,9 @@ class UserController < ApplicationController
     @user = User.find(params[:id])
     @article = Article.where(user_id: params[:id])
     @tweets = Tweet.where(user_id: params[:id])
-    if @following = follow_check(@user)
-      @followed = Follow.find_by(following_id: session[:user_id], follower_id: @user.id)
+    if follow_check(@user)
+      @follow = Follow.find_by(following_id: session[:user_id], follower_id: @user.id)
     end
-    @follow = Follow.new
+    @follow ||= Follow.new
   end
 end

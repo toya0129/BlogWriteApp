@@ -1,9 +1,5 @@
 ja:
-  views:
-    articles:
-      new:
-        form:
-          submit: 記事を投稿する
-      edit:
-        form:
-          submit: 記事を編集する
+  helpers:
+    submit:
+      create: 記事を投稿する
+      update: 記事を編集する
