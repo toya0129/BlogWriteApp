@@ -1,0 +1,14 @@
+h2 自分のつぶやき
+- @tweets.each do |tweet|
+  - if tweet.reply_id.present?
+    p reply
+  p = tweet.contents
+  = button_to "つぶやきを削除する", tweet_path(tweet), :method => :delete
+  p -------
+
+h2 自分の投稿
+- @article.each do |articles|
+  .field
+    .click
+      = link_to article_path(articles.id) do
+        p = articles.title

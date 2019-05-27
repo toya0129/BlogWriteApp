@@ -1,0 +1,8 @@
+h1 ログイン
+= form_for @session, url: session_create_path do |f|
+  p ユーザー名
+  = f.text_field :name
+  p パスワード
+  = f.text_field :password
+  br
+  = f.submit 'ログイン'

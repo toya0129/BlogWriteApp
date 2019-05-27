@@ -1,0 +1,19 @@
+h2 つぶやき
+- @tweets.each do |tweet|
+  - @followers.each do |follower|
+    - if check_tweet?(tweet,follower)
+      - if tweet.reply_id.nil?
+        p = tweet.user.name
+        p = tweet.contents
+        - @tweets.each do |t|
+          - if tweet.id == t.reply_id
+            p - #{t.user.name}
+            p -- #{t.contents}
+      = form_for @reply, url: tweets_path do |f|
+        p @返信
+        = f.text_area :contents
+        = f.hidden_field :reply_id, :value => tweet.id
+        br
+        = f.submit '返信する'
+      p --------
+= will_paginate @tweets, :param_name => 'tweet_page', :previous_label => ' &lt 前へ', :next_label => '次へ &gt'

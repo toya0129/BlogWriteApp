@@ -1,0 +1,11 @@
+h2 記事一覧
+br/
+- if @articles.blank?
+  p 記事がありません
+- else
+  - @articles.each do |article|
+    .field
+      .click
+        = link_to article_path(article) do
+          p = article.title
+  = will_paginate @articles, :param_name => 'article_page',:previous_label => ' &lt 前へ', :next_label => '次へ &gt'
